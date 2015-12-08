@@ -2,7 +2,7 @@
 //
 // Define the 'app' module.
 //
-angular.module('app', ['dragging', 'mouseCapture', ])
+angular.module('app', ['dragging', 'mouseCapture'])
 
 //
 // Define the main application controller.
@@ -16,7 +16,7 @@ angular.module('app', ['dragging', 'mouseCapture', ])
 		x: 50,
 		y: 50,
 		width: 100,
-		height: 100,
+		height: 100
 	};	
 
 	//
@@ -24,7 +24,7 @@ angular.module('app', ['dragging', 'mouseCapture', ])
 	//
 	$scope.draggableContainer =	{
 		width: 500,
-		height: 500,
+		height: 500
 	};
 
 	//
@@ -32,11 +32,14 @@ angular.module('app', ['dragging', 'mouseCapture', ])
 	//
 	$scope.mousedown = function (event) {
 
-		var draggingElement = $(event.target);
-		var draggingElementOffset = draggingElement.offset();
+		console.log(event.target);
+		var draggingElement = angular.element(event.target);
+		//var draggingElementOffset = draggingElement.offset();
+        var draggingElementOffset = draggingElement[0].getBoundingClientRect();
 		var parentElement = draggingElement.parent();
-		var parentOffset = parentElement.offset();
-		var startX = event.pageX - draggingElementOffset.left;
+		//var parentOffset = parentElement.offset();
+		var parentOffset = parentElement[0].getBoundingClientRect();
+        var startX = event.pageX - draggingElementOffset.left;
 		var startY = event.pageY - draggingElementOffset.top;
 
 		//
@@ -82,7 +85,7 @@ angular.module('app', ['dragging', 'mouseCapture', ])
 			//
 			clicked: function () {
 				alert("clicked");
-			},
+			}
 		});
 
 	};
@@ -102,7 +105,7 @@ angular.module('app', ['dragging', 'mouseCapture', ])
 
 				$element.css('left', newValue + "px");
 			});
-		},
+		}
 	};
 })
 
@@ -119,7 +122,7 @@ angular.module('app', ['dragging', 'mouseCapture', ])
 
 				$element.css('top', newValue + "px");
 			});
-		},
+		}
 	};
 })
 
@@ -136,7 +139,7 @@ angular.module('app', ['dragging', 'mouseCapture', ])
 
 				$element.css('width', newValue + "px");
 			});
-		},
+		}
 	};
 })
 
@@ -153,8 +156,6 @@ angular.module('app', ['dragging', 'mouseCapture', ])
 
 				$element.css('height', newValue + "px");
 			});
-		},
+		}
 	};
-})
-
-;
+});
